@@ -1,4 +1,9 @@
 FROM alpine:latest
+ARG TZ='Asia/Shanghai'
+
+ENV TZ $TZ
+ENV rpc-secret 3.1.3
+
 ##  下载到指定目录（静态服务器资源目录） https://wiki.alpinelinux.org/wiki/Lighttpd
 ## https://wiki.alpinelinux.org/wiki/Darkhttpd
 ## darkhttpd 是一个安全的、轻量级、快速和单线程的 HTTP/1.1 的Web服务器，只支持静态文件。只需一个可执行文件。

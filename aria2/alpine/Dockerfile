@@ -1,40 +1,36 @@
-FROM alpine:latest
+FROM alpine:3.7
+
 ARG TZ='Asia/Shanghai'
 
 ENV TZ $TZ
-ENV rpc-secret 3.1.3
 
-##  下载到指定目录（静态服务器资源目录） https://wiki.alpinelinux.org/wiki/Lighttpd
-## https://wiki.alpinelinux.org/wiki/Darkhttpd
-## darkhttpd 是一个安全的、轻量级、快速和单线程的 HTTP/1.1 的Web服务器，只支持静态文件。只需一个可执行文件。
+COPY  .  /aria2
 
-
-## https://github.com/ziahamza/webui-aria2
-## 加上webui-aria2 管理
-## 简单静态下载网站 在线播放网站
-## https://codeload.github.com/ziahamza/webui-aria2/zip/master
+WORKDIR  /aria2
 
 ## 端口映射
 RUN apk add --no-cache \
+       bash \
        aria2 \
-       Darkhttpd \
-    && apk add --virtual .deps \
-       unzip \
+       darkhttpd \
+       tzdata  \
+       curl \
     && curl -O https://codeload.github.com/ziahamza/webui-aria2/zip/master \
     && unzip webui-aria2-master.zip \
-    && mkdir /www \
-    && mv webui-aria2-master /www/webui-aria2 \
+    && mv webui-aria2-master webui \
+    && mkdir data \
     && rm webui-aria2-master.zip \
-    && aria2c --conf-path=aria2.conf -D \
-    && rc-update add darkhttpd \
-    && darkhttpd /www/webui-aria2 \
+    && chmod a+x start.sh \
+    && cp -r -f /usr/share/zoneinfo/${TZ} /etc/localtime \
     && apk del .deps
 
-VOLUME /www
 ## Web ui
-EXPOSE 80
+VOLUME ["/aria2/data"]
 
-CMD ["--conf-path=aria2.conf" ,"-D"]
-ENTRYPOINT [ "/usr/bin/aria2c" ]
+EXPOSE 6800
+EXPOSE 80
+EXPOSE 8080
+
+CMD ["/aria2/start.sh"]
 
 

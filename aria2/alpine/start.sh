@@ -1,17 +1,16 @@
 #!/bin/sh
-if [ ! -f /conf/aria2.conf ]; then
-	cp /conf-copy/aria2.conf /conf/aria2.conf
-	if [ $SECRET ]; then
-		echo "rpc-secret=${SECRET}" >> /conf/aria2.conf
-	fi
-fi
-if [ ! -f /conf/on-complete.sh ]; then
-	cp /conf-copy/on-complete.sh /conf/on-complete.sh
+
+## 设置 rpc-secret
+if [ $RPCSECRET ]; then
+		echo "rpc-secret=${RPCSECRET}" >> /aria2/aria2.conf
 fi
 
-chmod +x /conf/on-complete.sh
-touch /conf/aria2.session
+if [ ! -f /aria2/on-complete.sh ]; then
+	echo "on-download-complete=/conf/on-complete.sh" >> /aria2/aria2.conf
+	chmod +x /aria2/on-complete.sh
+fi
 
-darkhttpd /aria2-webui --port 80 &
-darkhttpd /data --port 8080 &
-aria2c --conf-path=/conf/aria2.conf
+
+darkhttpd /aria2/webui --port 80 &
+darkhttpd /aria2/data --port 8080 &
+aria2c --conf-path=/aria2/aria2.conf

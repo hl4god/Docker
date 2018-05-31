@@ -11,7 +11,7 @@ sudo docker run -d \
 -p 6880:80 \
 -p 6888:8080 \
 -v /www/data:/aria2/data \
--e SECRET=456123 \
+-e RPCSECRET=456123 \
 hl4god/aria2-with-webui
 
 

@@ -59,6 +59,25 @@ upstream www.google.com {
     server 172.217.166.164:443;
 }
 ```
+
+North America
+```nginx
+upstream www.google.com {
+    server 172.217.8.4:443;
+    server 216.58.192.228:443;
+    server 216.58.218.132:443;
+    server 172.217.11.164:443;
+    server 172.217.3.68:443;
+    server 172.217.6.228:443;
+    server 172.217.11.4:443;
+    server 172.217.6.36:443;
+    server 172.217.3.196:443;
+    server 216.58.217.36:443;
+    server 172.217.2.100:443;
+}
+
+```
+
 ## 参考
 
 [nginx Dockerfile](https://github.com/nginxinc/docker-nginx/blob/d377983a14b214fcae4b8e34357761282aca788f/stable/alpine/Dockerfile)

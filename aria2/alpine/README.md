@@ -10,8 +10,15 @@ sudo docker run -d \
 -p 6800:6800 \
 -p 6880:80 \
 -p 6888:8080 \
--v /www/data:/aria2/data \
--e RPCSECRET=456123 \
+-v /var/www/data:/aria2/data \
+-e RPCSECRET=123456 \
 hl4god/aria2-with-webui
+```
 
+
+Aria2下载页面
+http://[host]:6880
+
+下载目录索引页面
+http://[host]:6888
 

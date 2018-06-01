@@ -4,7 +4,7 @@ LABEL maintainer="Holly <hl4god@gmail.com>"
 
 # https://wiki.alpinelinux.org/wiki/Setting_up_Explicit_Squid_Proxy
 # https://github.com/chrisdaish/docker-squid/blob/master/configFiles/squid.conf
-RUN apk  --no-cache add squid
+RUN apk  --no-cache add squid squid-lang-zh acf-squid
 
 EXPOSE   3128
 

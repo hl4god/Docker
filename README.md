@@ -36,3 +36,9 @@ https://letsencrypt.org/getting-started/
 https://certbot.eff.org/lets-encrypt/centosrhel7-nginx
 
 python3 爬虫
+
+
+docker volume ------mvn仓库地址
+docker volume ------node_module
+
+docker run --rm -it -v  /f/workspaces/node/docker-node-demo:/app -v node_modules9:/app/node_modules -w /app --name nodeApp hl4god/node

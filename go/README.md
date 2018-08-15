@@ -1,6 +1,15 @@
 # go-alpine
 
-编译基础镜像
+编译基础镜像,镜像里已安装以下go模块
+
+1. golang.org/x/crypto
+2. echo
+3. beego
+4. gin
+5. iris
+6. jwt-go
+7. go-sql-driver/mysql
+
 
 ## 快速开始
 
